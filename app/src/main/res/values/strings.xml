@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">MovieExplorer2</string>
+    <string name="movie_explorer">Movie Explorer</string>
+    <string name="title">title</string>
+    <string name="rating">rating</string>
+    <string name="description">description</string>
+    <string name="unexpected_response">
+        Unexpected response from server
+    </string>
+
+    <string name="connection_timeout">
+        Connection timed out. Please try again.
+    </string>
+
+    <string name="no_internet">
+        No internet connection.
+    </string>
+
+    <string name="parsing_error">
+        Unable to process server response.
+    </string>
+
+    <string name="unknown_error">
+        Something went wrong.
+    </string>
+
+    <string name="something_went_wrong">
+        Something went wrong. Please try again.
+    </string>
+
+    <string name="see_all">See All</string>
+    <string name="retry">Retry</string>
+    <string name="error_generic">Something went wrong</string>
+    <string name="xoco_1">XOCO.1</string>
+    <string name="language">Language</string>
+    <string name="release_date">release_date</string>
+    <string name="runtime">runtime</string>
+    <string name="overview">overview</string>
+    <string name="popularity">Popularity:</string>
+    <string name="popularity_1">popularity</string>
+    <string name="revenue">Revenue:</string>
+    <string name="status">Status:</string>
+</resources>

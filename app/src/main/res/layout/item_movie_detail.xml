@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <!-- Poster -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <ImageView
+            android:id="@+id/posterImageDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/movie_surface_variant"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
+
+        <!-- Bottom gradient -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/featured_bottom_gradient" />
+
+        <!-- Rating -->
+        <TextView
+            android:id="@+id/ratingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:background="@drawable/rating_background"
+            android:paddingStart="10dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="6dp"
+            android:textColor="@color/movie_on_image"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="⭐ 8.7" />
+
+        <!-- Movie title -->
+        <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:textColor="@color/movie_on_image"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            tools:text="Batman: Knightfall Part 1" />
+
+    </FrameLayout>
+
+    <!-- Basic information -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/movie_lang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:textColor="@color/movie_accent"
+            android:textSize="13sp"
+            tools:text="EN" />
+
+        <TextView
+            android:id="@+id/movie_release_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/movie_accent"
+            android:textSize="13sp"
+            tools:text="2026-09-20" />
+
+        <TextView
+            android:id="@+id/movie_runtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textColor="@color/movie_accent"
+            android:textSize="13sp"
+            tools:text="120 min" />
+
+    </LinearLayout>
+
+    <!-- Overview -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/overview"
+        android:textColor="@color/movie_text_primary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movie_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/movie_text_secondary"
+        android:textSize="15sp"
+        tools:text="A detailed movie description appears here..." />
+
+    <!-- Movie information card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/movie_surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/movie_stroke"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Popularity -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/popularity"
+                    android:textColor="@color/movie_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movie_popularity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/movie_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="245.32" />
+
+            </LinearLayout>
+
+            <!-- Revenue -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/revenue"
+                    android:textColor="@color/movie_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movie_revenue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/movie_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="$250M" />
+
+            </LinearLayout>
+
+            <!-- Status -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status"
+                    android:textColor="@color/movie_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movie_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/movie_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="Released" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/movie_tagline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:textColor="@color/movie_accent"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        tools:text="The night belongs to Gotham." />
+
+</LinearLayout>

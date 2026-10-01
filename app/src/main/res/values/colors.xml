@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="movie_primary">#8B0000</color>
+    <color name="movie_accent">#B71C1C</color>
+    <color name="movie_on_primary">#FFFFFF</color>
+    <color name="movie_on_image">#FFFFFF</color>
+
+    <!-- Light theme -->
+    <color name="movie_background">#F7F7F7</color>
+    <color name="movie_surface">#FFFFFF</color>
+    <color name="movie_surface_variant">#EDEDED</color>
+    <color name="movie_text_primary">#171717</color>
+    <color name="movie_text_secondary">#5F5F5F</color>
+    <color name="movie_stroke">#E0E0E0</color>
+    <color name="movie_accent_text">#B71C1C</color>
+
+    <!-- Overlays on posters (same in both themes) -->
+    <color name="movie_scrim_badge">#99000000</color>
+    <color name="movie_scrim_gradient">#E6000000</color>
+</resources>

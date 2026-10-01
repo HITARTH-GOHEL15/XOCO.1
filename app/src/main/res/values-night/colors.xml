@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="movie_background">#0D0D0D</color>
+    <color name="movie_surface">#171717</color>
+    <color name="movie_surface_variant">#232323</color>
+    <color name="movie_text_primary">#FFFFFF</color>
+    <color name="movie_text_secondary">#B3B3B3</color>
+    <color name="movie_stroke">#2A2A2A</color>
+    <!-- #B71C1C is too dim as small text on #0D0D0D, so use a lighter red for text only -->
+    <color name="movie_accent_text">#EF5350</color>
+</resources>

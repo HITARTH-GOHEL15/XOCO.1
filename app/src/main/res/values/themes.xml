@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MovieExplorer2" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/movie_primary</item>
+        <item name="colorOnPrimary">@color/movie_on_primary</item>
+        <item name="colorSecondary">@color/movie_accent</item>
+        <item name="colorOnSecondary">@color/movie_on_primary</item>
+        <item name="android:colorBackground">@color/movie_background</item>
+        <item name="colorSurface">@color/movie_surface</item>
+        <item name="colorOnSurface">@color/movie_text_primary</item>
+        <item name="colorOnBackground">@color/movie_text_primary</item>
+        <item name="android:statusBarColor">@color/movie_background</item>
+        <item name="android:navigationBarColor">@color/movie_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.MovieExplorer2" parent="Base.Theme.MovieExplorer2" />
+</resources>
