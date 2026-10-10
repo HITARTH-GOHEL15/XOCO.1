@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import com.app.movieexplorer2.data.remote.MovieDto
+import com.app.movieexplorer2.data.remote.models.MovieDto
 import com.app.movieexplorer2.databinding.ItemMovieDetailBinding
+import com.app.movieexplorer2.utils.toRatingText
 
-class MovieDetailAdapter : RecyclerView.Adapter<MovieDetailAdapter.MovieDetailHolder>() {
+class MovieDetailAdapter(
+    private val onAddReviewClick: () -> Unit,
+    private val onPutTestClick: () -> Unit,
+    private val onPatchTestClick: () -> Unit
+) : RecyclerView.Adapter<MovieDetailAdapter.MovieDetailHolder>() {
 
     private var movie: MovieDto? = null
 
@@ -25,7 +30,12 @@ class MovieDetailAdapter : RecyclerView.Adapter<MovieDetailAdapter.MovieDetailHo
     ): MovieDetailHolder {
         val binding = ItemMovieDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MovieDetailHolder(binding)
+        return MovieDetailHolder(
+            binding,
+            onAddReviewClick,
+            onPutTestClick,
+            onPatchTestClick
+        )
     }
 
     override fun onBindViewHolder(
@@ -42,12 +52,28 @@ class MovieDetailAdapter : RecyclerView.Adapter<MovieDetailAdapter.MovieDetailHo
     }
 
 
-    class MovieDetailHolder(val binding: ItemMovieDetailBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+    class MovieDetailHolder(
+        val binding: ItemMovieDetailBinding,
+        val onAddReviewClick: () -> Unit,
+        val onPutTestClick: () -> Unit,
+        val onPatchTestClick: () -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.addReviewButton.setOnClickListener {
+                onAddReviewClick()
+            }
+            binding.putTestButton.setOnClickListener {
+                onPutTestClick()
+            }
+            binding.patchTestButton.setOnClickListener {
+                onPatchTestClick()
+            }
+        }
 
         fun bind(movie: MovieDto) {
             binding.movieTitle.text = movie.title
-            binding.ratingText.text = "${movie.voteAverage}"
+            binding.ratingText.text = movie.voteAverage?.toRatingText()
             binding.movieLang.text = movie.originalLanguage
             binding.movieReleaseDate.text = movie.releaseDate
             binding.movieOverview.text = movie.overview

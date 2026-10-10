@@ -1,6 +1,6 @@
-package com.app.movieexplorer2.ui
+package com.app.movieexplorer2.ui.uiState
 
-import com.app.movieexplorer2.data.remote.MovieDto
+import com.app.movieexplorer2.data.remote.models.MovieDto
 import com.app.movieexplorer2.utils.ErrorBean
 
 data class MovieDetailUiState(

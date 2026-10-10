@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Focused -->
+    <item
+        android:state_focused="true"
+        android:color="@color/movie_accent" />
+
+    <!-- Error -->
+    <item
+        android:state_activated="true"
+        android:color="@color/movie_primary" />
+
+    <!-- Default / unfocused -->
+    <item android:color="@color/movie_text_secondary" />
+
+</selector>

@@ -8,4 +8,6 @@
     <color name="movie_stroke">#2A2A2A</color>
     <!-- #B71C1C is too dim as small text on #0D0D0D, so use a lighter red for text only -->
     <color name="movie_accent_text">#EF5350</color>
+
+    <color name="movie_nav_indicator">#3B1313</color>
 </resources>

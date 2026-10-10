@@ -18,4 +18,9 @@
     <!-- Overlays on posters (same in both themes) -->
     <color name="movie_scrim_badge">#99000000</color>
     <color name="movie_scrim_gradient">#E6000000</color>
+
+    <color name="movie_nav_indicator">#FADADA</color>
+
+
+    <color name="movie_star">#FFC107</color>
 </resources>

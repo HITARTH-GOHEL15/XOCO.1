@@ -12,6 +12,9 @@
         <item name="android:statusBarColor">@color/movie_background</item>
         <item name="android:navigationBarColor">@color/movie_background</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="colorSecondaryContainer">@color/movie_nav_indicator</item>
     </style>
 
     <style name="Theme.MovieExplorer2" parent="Base.Theme.MovieExplorer2" />

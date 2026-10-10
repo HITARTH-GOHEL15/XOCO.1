@@ -40,4 +40,60 @@
     <string name="popularity_1">popularity</string>
     <string name="revenue">Revenue:</string>
     <string name="status">Status:</string>
+
+    <string name="add_review">Add Movie Review</string>
+    <string name="review_hint">Share your thoughts about this movie</string>
+    <string name="submit">Submit</string>
+
+    <string name="review_subtitle">How was the movie?</string>
+    <string name="review_rate_hint">Tap a star to rate</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="review_labels">
+        <item>Terrible</item>
+        <item>Poor</item>
+        <item>Okay</item>
+        <item>Good</item>
+        <item>Excellent</item>
+    </string-array>
+
+
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search movies</string>
+    <string name="search_empty_title">Find your next movie</string>
+    <string name="search_empty_body">Search by title to discover something new</string>
+    <string name="search_no_results">No results found</string>
+    <string name="search_no_results_body">Try a different title or check the spelling</string>
+
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_body">Tap the heart on any movie to save it here</string>
+    <string name="explore_movies">Explore movies</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_name">Movie Lover</string>
+    <string name="profile_email">movielover@email.com</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="stat_favorites">Favorites</string>
+    <string name="stat_reviews">Reviews</string>
+    <string name="stat_watched">Watched</string>
+    <string name="appearance">Appearance</string>
+    <string name="notifications">Notifications</string>
+    <string name="my_reviews">My reviews</string>
+    <string name="about">About</string>
+    <string name="app_version">Version 1.0</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_account_sub_title">Please complete all the information to create your account</string>
+    <string name="check_the_box">Check the box</string>
+    <string name="login">login</string>
+    <string name="already_have_a_account">Already have a account?</string>
+    <string name="here">here</string>
+    <string name="verify_email_address_with_otp">Verify email Address With OTP?</string>
+    <string name="login_subtitle">Let\'s get you signed in. Enter your emaill below</string>
+    <string name="welocme_back">Welocme Back!</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
 </resources>

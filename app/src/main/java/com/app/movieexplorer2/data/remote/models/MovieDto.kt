@@ -1,4 +1,4 @@
-package com.app.movieexplorer2.data.remote
+package com.app.movieexplorer2.data.remote.models
 
 
 import com.google.gson.annotations.SerializedName
@@ -33,7 +33,7 @@ data class MovieDto(
     var voteAverage: Double? = null,
     @SerializedName("vote_count")
     var voteCount: Int? = null,
-    @SerializedName("run_time")
+    @SerializedName("runtime")
     var runtime: Int? = null,
     @SerializedName("revenue")
     var revenue: Int? = null,

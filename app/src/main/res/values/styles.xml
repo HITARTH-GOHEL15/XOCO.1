@@ -10,5 +10,84 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
+
+    <!-- Display font for titles -->
+    <style name="TextAppearance.MovieExplorer.Display" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+        <item name="fontFamily">@font/bebasneue_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+
+    <style name="ThemeOverlay.MovieExplorer.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/movie_accent_text</item>
+        <item name="colorSurface">@color/movie_surface</item>
+        <item name="colorOnSurface">@color/movie_text_primary</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.MovieExplorer</item>
+    </style>
+
+    <style name="MaterialAlertDialog.MovieExplorer" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.MovieExplorer.Dialog</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="ShapeAppearance.MovieExplorer.Dialog" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="TextAppearance.MovieExplorer.AppBarTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+        <item name="fontFamily">@font/bebasneue_regular</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+
+    <style name="TextAppearance.MovieExplorer.BottomNav" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="ShapeAppearance.MovieExplorer.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.MovieExplorer.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/movie_accent_text</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/movie_accent_text</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.MovieExplorer.BottomNav.ActiveIndicator"
+        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/movie_nav_indicator</item>
+    </style>
+
+    <style name="Widget.MovieExplorer.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+       <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Large</item>
+       <item name="boxStrokeColor">@color/text_input_stroke</item>
+       <item name="boxStrokeWidth">1dp</item>
+       <item name="boxStrokeWidthFocused">2dp</item>
+       <item name="android:textColorHint">@color/movie_on_primary</item>
+       <item name="helperTextTextColor">@color/movie_text_secondary</item>
+       <item name="counterTextColor">@color/movie_text_secondary</item>
+       <item name="errorTextColor">@color/movie_primary</item>
+       <item name="errorIconTint">@color/movie_primary</item>
+       <item name="errorIconDrawable">@drawable/ic_parsing_error</item>
+    </style>
+
+    <!-- Add this line inside Widget.MovieExplorer.Button so buttons use Poppins -->
 </resources>

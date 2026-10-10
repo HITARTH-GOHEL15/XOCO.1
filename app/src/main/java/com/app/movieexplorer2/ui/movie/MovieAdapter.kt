@@ -10,6 +10,7 @@ import coil3.request.placeholder
 import com.app.movieexplorer2.R
 import com.app.movieexplorer2.data.models.Movie
 import com.app.movieexplorer2.databinding.ItemMovieBinding
+import com.app.movieexplorer2.utils.toRatingText
 
 class MovieAdapter(private val onMovieClick: (Movie) -> Unit) :
   ListAdapter<Movie, MovieAdapter.ItemMovieHolder>(
@@ -57,7 +58,7 @@ class MovieAdapter(private val onMovieClick: (Movie) -> Unit) :
 
             binding.posterImage.load(posterUrl)
 
-            binding.ratingText.text = "${movie.rating}"
+            binding.ratingText.text = movie.rating?.toRatingText()
         }
     }
 }

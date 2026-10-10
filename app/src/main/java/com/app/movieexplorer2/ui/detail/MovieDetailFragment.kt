@@ -1,9 +1,11 @@
 package com.app.movieexplorer2.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,12 +14,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.movieexplorer2.R
-import com.app.movieexplorer2.data.remote.MovieDto
+import com.app.movieexplorer2.data.remote.models.UpdatePostRequest
+import com.app.movieexplorer2.data.remote.models.UpdateReviewPatchRequest
 import com.app.movieexplorer2.databinding.FragmentDetailBinding
+import com.app.movieexplorer2.ui.helper.showAddReviewDialog
 import com.app.movieexplorer2.ui.viewmodel.MovieDetailViewModel
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
+
 
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
@@ -25,11 +31,17 @@ class MovieDetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var detailAdapter: MovieDetailAdapter
-
     private val viewModel: MovieDetailViewModel by viewModels()
 
     private val args: MovieDetailFragmentArgs by navArgs()
+
+    private lateinit var detailAdapter: MovieDetailAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply { duration = 300 }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply { duration = 300 }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +49,11 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding =
-            FragmentDetailBinding.inflate(
-                inflater,
-                container,
-                false
-            )
+        _binding = FragmentDetailBinding.inflate(
+            inflater,
+            container,
+            false
+        )
 
         return binding.root
     }
@@ -51,62 +62,120 @@ class MovieDetailFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?
     ) {
-        super.onViewCreated(
-            view,
-            savedInstanceState
-        )
-
-        hideActivityToolbar()
+        super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
         setupRecyclerView()
-        observeUiState()
 
-        viewModel.getMovieDetails(
-            args.movieId
-        )
-    }
+        observeMovieDetails()
+        observeRating()
+        observePutMovie()
+        observePatchMovie()
 
-    private fun hideActivityToolbar() {
+        viewModel.getMovieDetails(args.movieId)
 
-        requireActivity()
-            .findViewById<View>(R.id.topAppBar)
-            ?.visibility = View.GONE
-    }
-
-    private fun showActivityToolbar() {
-
-        requireActivity()
-            .findViewById<View>(R.id.topAppBar)
-            ?.visibility = View.VISIBLE
+        /*
+         * Only call this if your ViewModel already has
+         * createGuestSession().
+         */
+        viewModel.createGuestSession()
     }
 
     private fun setupToolbar() {
 
         binding.detailTopBar.setNavigationOnClickListener {
-
             findNavController().popBackStack()
         }
     }
 
     private fun setupRecyclerView() {
 
-        detailAdapter =
-            MovieDetailAdapter()
+        detailAdapter = MovieDetailAdapter(
+
+            onAddReviewClick = {
+
+                showAddReviewDialog(requireContext()) { rating, review ->
+
+                    submitRating(rating)
+
+                    /*
+                     * 'review' is currently not sent to TMDB.
+                     *
+                     * TMDB's rating endpoint only accepts
+                     * the numeric rating value.
+                     */
+                }
+            },
+            onPutTestClick = {
+                val request = UpdatePostRequest(
+                    userId = 1,
+                    title = "Updated Movie Review",
+                    body = "This review was updated using PUT"
+                )
+
+                viewModel.putMovie(
+                    id = 1,
+                    request = request
+                )
+            },
+            onPatchTestClick = {
+                val request = UpdateReviewPatchRequest(
+                    body = "This review was updated using PATCH"
+                )
+
+                viewModel.patchMovie(
+
+                )
+            }
+        )
 
         binding.detailRecycleView.apply {
 
             layoutManager =
                 LinearLayoutManager(requireContext())
 
-            adapter =
-                detailAdapter
+            adapter = detailAdapter
 
-            setHasFixedSize(false)
+            overScrollMode = View.OVER_SCROLL_NEVER
         }
     }
 
-    private fun observeUiState() {
+    private fun submitRating(rating: Float) {
+
+        /*
+         * RatingBar has 5 stars.
+         *
+         * TMDB expects 0.5 - 10.
+         *
+         * Therefore:
+         *
+         * 1 star = 2
+         * 2 stars = 4
+         * 3 stars = 6
+         * 4 stars = 8
+         * 5 stars = 10
+         */
+
+        if (rating <= 0f) {
+
+            Toast.makeText(
+                requireContext(),
+                "Please select a rating",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return
+        }
+        val tmdbRating =
+            (rating * 2).toDouble()
+
+        viewModel.rateMovie(
+            movieId = args.movieId,
+            rating = tmdbRating
+        )
+    }
+
+    private fun observeMovieDetails() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
@@ -116,23 +185,49 @@ class MovieDetailFragment : Fragment() {
 
                 viewModel.uiState.collect { state ->
 
+                    Log.d(
+                        "DETAIL_UI",
+                        "isLoading=${state.isLoading}, movieLoaded=${state.movieLoaded}, error=${state.error}"
+                    )
+
                     when {
 
                         state.isLoading -> {
-                            showLoading()
+
+                            binding.progressBar.visibility =
+                                View.VISIBLE
                         }
 
                         state.error != null -> {
-                            showError(
+
+                            binding.progressBar.visibility =
+                                View.GONE
+
+                            Toast.makeText(
+                                requireContext(),
                                 state.error.errorMessage
-                                    ?: "Unable to load movie"
-                            )
+                                    ?: "Something went wrong",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
-                        state.movie != null -> {
-                            showMovie(
-                                state.movie
+                        state.movieLoaded -> {
+                            binding.progressBar.visibility = View.GONE
+
+                            Log.d(
+                                "DETAIL_UI",
+                                "ProgressBar visibility after GONE = ${binding.progressBar.visibility}"
                             )
+
+                            state.movie?.let { movie ->
+                                Log.d("DETAIL_UI", "Submitting movie to adapter = ${movie.title}")
+                                detailAdapter.submitMovie(movie)
+
+                                Log.d(
+                                    "DETAIL_UI",
+                                    "Adapter itemCount = ${detailAdapter.itemCount}"
+                                )
+                            }
                         }
                     }
                 }
@@ -140,48 +235,124 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
-    private fun showMovie(movie: MovieDto) {
+    private fun observePutMovie() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.putState.collect { state ->
 
-        hideLoading()
+                when {
+                    state.isLoading -> {
+                        // Show loading if you want
+                    }
 
-        detailAdapter.submitMovie(movie)
+                    state.success -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Movie updated successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        Log.d(
+                            "PUT_MOVIE",
+                            "Updated movie = ${state.data}"
+                        )
+                    }
+
+                    state.error != null -> {
+                        Toast.makeText(
+                            requireContext(),
+                            state.error?.errorMessage
+                                ?: "Something went wrong",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
     }
 
-    private fun showLoading() {
+    private fun observePatchMovie() {
 
-        binding.progressBar.visibility =
-            View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
 
-        binding.errorContainer.visibility =
-            View.GONE
+            viewModel.patchUiState.collect { state ->
+
+                when {
+
+                    state.isLoading -> {
+                        // Show loading if you want
+                    }
+
+                    state.success -> {
+
+                        Toast.makeText(
+                            requireContext(),
+                            "Movie review patched successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        Log.d(
+                            "PATCH_MOVIE",
+                            "Patched movie = ${state.data}"
+                        )
+                    }
+
+                    state.error != null -> {
+
+                        Toast.makeText(
+                            requireContext(),
+                            state.error?.errorMessage
+                                ?: "Something went wrong",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
     }
+    private fun observeRating() {
 
-    private fun hideLoading() {
+        viewLifecycleOwner.lifecycleScope.launch {
 
-        binding.progressBar.visibility =
-            View.GONE
+            viewLifecycleOwner.repeatOnLifecycle(
+                Lifecycle.State.STARTED
+            ) {
 
-        binding.errorContainer.visibility =
-            View.GONE
-    }
+                viewModel.rateState.collect { state ->
 
-    private fun showError(message: String) {
+                    when {
 
-        binding.progressBar.visibility =
-            View.GONE
+                        state.isLoading -> {
+                            // Optional:
+                            // show rating progress here
+                        }
 
-        binding.errorContainer.visibility =
-            View.VISIBLE
+                        state.success -> {
 
-        binding.errorText.text =
-            message
+                            Toast.makeText(
+                                requireContext(),
+                                "Rating submitted successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        state.error != null -> {
+
+                            Toast.makeText(
+                                requireContext(),
+                                state.error.errorMessage
+                                    ?: "Failed to submit rating",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
 
         binding.detailRecycleView.adapter = null
-
-        showActivityToolbar()
 
         _binding = null
 

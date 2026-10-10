@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="145dp"
-    android:layout_height="245dp"
+    android:layout_height="218dp"
     android:layout_marginEnd="12dp"
     android:clickable="true"
     android:focusable="true"
@@ -14,54 +14,55 @@
     app:strokeColor="@color/movie_stroke"
     app:strokeWidth="1dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <ImageView
+            android:id="@+id/posterImage"
             android:layout_width="match_parent"
-            android:layout_height="190dp">
+            android:layout_height="match_parent"
+            android:background="@color/movie_surface_variant"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"/>
 
-            <ImageView
-                android:id="@+id/posterImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/movie_surface_variant"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/featured_bottom_gradient"/>
 
-            <TextView
-                android:id="@+id/ratingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:layout_margin="8dp"
-                android:background="@drawable/rating_background"
-                android:paddingStart="8dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:textColor="@color/movie_on_image"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                tools:text="⭐ 8.7"/>
-        </FrameLayout>
+        <TextView
+            android:id="@+id/ratingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="8dp"
+            android:background="@drawable/rating_background"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/movie_on_image"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="8.7"/>
 
         <TextView
             android:id="@+id/movieTitle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textColor="@color/movie_text_primary"
-            android:textSize="13sp"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:textColor="@color/movie_on_image"
+            android:textSize="14sp"
             android:textStyle="bold"
-            tools:text="Movie Title"/>
-    </LinearLayout>
+            tools:text="Batman: Knightfall Part 1"/>
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

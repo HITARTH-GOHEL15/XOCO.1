@@ -2,7 +2,6 @@ package com.app.movieexplorer2.utils.resource
 
 import android.content.Context
 import com.app.movieexplorer2.R
-import com.app.movieexplorer2.data.remote.MovieResponseDto
 import com.app.movieexplorer2.utils.ErrorBean
 import com.app.movieexplorer2.utils.ErrorUtils
 import retrofit2.Response

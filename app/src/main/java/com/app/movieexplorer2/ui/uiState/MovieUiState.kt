@@ -1,4 +1,4 @@
-package com.app.movieexplorer2.ui
+package com.app.movieexplorer2.ui.uiState
 
 import com.app.movieexplorer2.data.models.Movie
 import com.app.movieexplorer2.utils.ErrorBean

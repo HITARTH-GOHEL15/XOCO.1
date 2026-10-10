@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/movie_background"
+    android:transitionGroup="true">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verify Your Email Address"
+            android:ellipsize="start"
+            android:textSize="35sp"
+            android:textColor="@color/movie_primary"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/bebasneue_regular"
+            app:fontFamily="@font/bebasneue_regular"/>
+
+        <TextView
+            android:id="@+id/login_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="please check your email address to enter OTP."
+            android:ellipsize="start"
+            android:textSize="15sp"
+            android:textColor="@color/movie_text_secondary"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="5dp"
+            android:fontFamily="@font/poppins_medium"
+            app:fontFamily="@font/poppins_medium"/>
+
+        <TextView
+            android:id="@+id/email_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:ellipsize="start"
+            android:textSize="20sp"
+            android:textColor="@color/movie_text_primary"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="2dp"
+            android:fontFamily="@font/poppins_medium"
+            app:fontFamily="@font/poppins_medium"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_textField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="2dp"
+            android:textColorHint="@color/movie_text_primary"
+            app:helperText="yourName@gmail.com"
+            app:helperTextEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            style="@style/Widget.MovieExplorer.TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/otp_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter OTP"
+            android:ellipsize="start"
+            android:textSize="20sp"
+            android:textColor="@color/movie_text_primary"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            app:fontFamily="@font/poppins_medium"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/otp_textField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="2dp"
+            android:textColorHint="@color/movie_text_primary"
+            app:endIconMode="password_toggle"
+            app:helperText="123456"
+            app:helperTextEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            style="@style/Widget.MovieExplorer.TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/verifyButton"
+            style="@style/Widget.MovieExplorer.Button"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Verify Email Address"
+            app:cornerRadius="28dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/movie_on_primary"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't receive the code?"
+                android:ellipsize="start"
+                android:textSize="15sp"
+                android:textColor="@color/movie_text_secondary"
+                android:paddingStart="15dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:fontFamily="@font/poppins_medium"
+                app:fontFamily="@font/poppins_medium"/>
+
+            <TextView
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend"
+                android:ellipsize="start"
+                android:textSize="15sp"
+                android:textColor="@color/movie_accent_text"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:fontFamily="@font/poppins_medium"
+                app:fontFamily="@font/poppins_medium"
+                android:clickable="true"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/movie_accent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/errorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_error_outline"/>
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/movie_text_secondary"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/verifyTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationContentDescription="navigation_back"
+        app:navigationIcon="@drawable/ic_back_circle"/>
+</FrameLayout>

@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
+    android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginEnd="8dp"
     android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@color/movie_surface"
     app:cardCornerRadius="20dp"
@@ -40,9 +40,11 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:padding="20dp"
+            android:fontFamily="@font/bebasneue_regular"
+            android:letterSpacing="0.04"
             android:textColor="@color/movie_on_image"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="30sp"
+            app:fontFamily="@font/bebasneue_regular"
             tools:text="Movie title"/>
     </FrameLayout>
 

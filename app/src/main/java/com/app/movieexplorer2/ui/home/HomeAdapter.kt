@@ -103,6 +103,12 @@ class HomeAdapter(
         private val binding: HeaderLayoutBinding
     ) : HomeViewHolder(binding.root) {
         fun bind(item: HomeItem.Header) {
+            binding.featuredPager.offscreenPageLimit = 3
+            binding.featuredPager.setPageTransformer { page, position ->
+                val scale = 0.88f + (1 - kotlin.math.abs(position).coerceAtMost(1f)) * 0.12f
+                page.scaleY = scale
+                page.alpha = 0.6f + (scale - 0.88f) / 0.12f * 0.4f
+            }
             binding.featuredPager.adapter = HeaderViewPagerAdapter(item.movies)
         }
 

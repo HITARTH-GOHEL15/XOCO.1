@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/movie_background"
         app:title="@string/xoco_1"
-        app:titleTextAppearance="?attr/textAppearanceHeadline6"
+        app:titleTextAppearance="@style/TextAppearance.MovieExplorer.AppBarTitle"
         app:titleTextColor="@color/movie_accent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,5 +29,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/movie_stroke"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/movie_surface"
+        app:elevation="0dp"
+        app:itemIconTint="@color/bottom_nav_item"
+        app:itemTextAppearanceActive="@style/TextAppearance.MovieExplorer.BottomNav"
+        app:itemTextAppearanceInactive="@style/TextAppearance.MovieExplorer.BottomNav"
+        app:itemTextColor="@color/bottom_nav_item"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemActiveIndicatorStyle="@style/Widget.MovieExplorer.BottomNav.ActiveIndicator"
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

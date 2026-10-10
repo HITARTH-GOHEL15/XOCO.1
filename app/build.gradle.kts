@@ -115,4 +115,13 @@ dependencies {
 
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+
+    // Room
+    implementation("androidx.room:room-runtime:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    ksp("androidx.room:room-compiler:2.8.3")
+
+    implementation("com.tbuonomo:dotsindicator:4.3")
+
+    implementation("com.airbnb.android:lottie:3.4.0")
 }

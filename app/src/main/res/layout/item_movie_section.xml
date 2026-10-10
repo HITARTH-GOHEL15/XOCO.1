@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingTop="16dp"
     android:paddingBottom="8dp">
@@ -28,8 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/movie_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/bebasneue_regular"
+            android:textSize="26sp"
+            android:letterSpacing="0.04"
+            app:fontFamily="@font/bebasneue_regular"
             tools:text="Popular Movies"/>
 
         <TextView

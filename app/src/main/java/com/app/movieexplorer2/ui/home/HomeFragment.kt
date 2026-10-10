@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,12 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.movieexplorer2.R
 import com.app.movieexplorer2.data.models.HomeItem
 import com.app.movieexplorer2.databinding.FragmentHomeBinding
-import com.app.movieexplorer2.ui.MovieUiState
-import com.app.movieexplorer2.ui.detail.MovieDetailFragment
+import com.app.movieexplorer2.ui.uiState.MovieUiState
 import com.app.movieexplorer2.ui.viewmodel.HomeViewModel
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,6 +29,12 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeAdapter
 
     private val viewModel: HomeViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply { duration = 300 }
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply { duration = 300 }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,17 +93,22 @@ class HomeFragment : Fragment() {
                         hideLoading()
                     }
 
-                    if (state.error != null) {
+                    val hasMovies =
+                        state.popularMovies.isNotEmpty() ||
+                                state.topMovies.isNotEmpty() ||
+                                state.upcomingMovies.isNotEmpty()
+
+                    if (state.error != null && !hasMovies) {
 
                         showError(
                             state.error.errorMessage
                                 ?: "Unable to load movies"
                         )
 
-                        return@collect
-                    }
+                    } else {
 
-                    showMovies(state)
+                        showMovies(state)
+                    }
                 }
             }
         }
@@ -106,6 +117,8 @@ class HomeFragment : Fragment() {
     private fun showMovies(
         state: MovieUiState
     ) {
+
+        binding.errorContainer.visibility = View.GONE
 
         val homeItems = listOf(
 
@@ -174,6 +187,9 @@ class HomeFragment : Fragment() {
             view,
             savedInstanceState
         )
+
+        postponeEnterTransition()
+        (view.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
 
         setupRecycleView()
 
