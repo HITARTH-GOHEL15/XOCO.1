@@ -2,6 +2,7 @@ package com.app.movieexplorer2.data.remote.models
 
 data class OtpVerifyResponse(
     val access: String,
-    val user: List<UserData>,
+    val refresh: String? = null,
+    val user: UserData,
     val status_code:Int
 )

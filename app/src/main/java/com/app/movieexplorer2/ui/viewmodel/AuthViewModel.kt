@@ -28,17 +28,29 @@ class AuthViewModel @Inject constructor(
     val registerState: StateFlow<RegisterUiState> =
             _registerState.asStateFlow()
 
+    fun resetRegisterState() {
+        _loginState.value = LoginUiState()
+    }
+
     private val _loginState =
         MutableStateFlow(LoginUiState())
 
     val loginState: StateFlow<LoginUiState> =
         _loginState.asStateFlow()
 
+    fun resetLoginState() {
+        _loginState.value = LoginUiState()
+    }
+
     private val _verifyState =
         MutableStateFlow(VerifyUiState())
 
     val verifyState: StateFlow<VerifyUiState> =
         _verifyState.asStateFlow()
+
+    fun resetVerifyState() {
+        _loginState.value = LoginUiState()
+    }
 
     fun registerUser(
         fullName: String,
@@ -94,11 +106,22 @@ class AuthViewModel @Inject constructor(
                 }
 
                 Status.SUCCESS -> {
-                    _loginState.value =
-                        LoginUiState(
+                    val loginResponse = result.data
+
+                    if (loginResponse != null &&
+                        loginResponse.access.isNotBlank()
+                    ) {
+                        _loginState.value = LoginUiState(
+                            isLoading = false,
                             success = true,
-                            isLoading = false
+                            data = loginResponse
                         )
+                    } else {
+                        _loginState.value = LoginUiState(
+                            isLoading = false,
+                            error = result.error
+                        )
+                    }
                 }
 
                 Status.ERROR -> {
@@ -129,11 +152,22 @@ class AuthViewModel @Inject constructor(
                 }
 
                 Status.SUCCESS -> {
-                    _verifyState.value =
-                        VerifyUiState(
-                            success = true,
-                            isLoading = false
-                        )
+                   val verifyResponse = result.data
+
+                   if(verifyResponse != null &&
+                       verifyResponse.access.isNotBlank()) {
+                       _verifyState.value = VerifyUiState(
+                           isLoading = false,
+                           success = true,
+                           data = verifyResponse
+                       )
+                   } else {
+                       _verifyState.value = VerifyUiState(
+                           isLoading = false,
+                           error = result.error
+                       )
+                   }
+
                 }
 
                 Status.ERROR -> {
@@ -144,6 +178,6 @@ class AuthViewModel @Inject constructor(
                         )
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }

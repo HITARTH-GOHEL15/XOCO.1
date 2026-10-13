@@ -86,7 +86,7 @@ class ResponseHandler(
                 Resource.error(
                     ErrorBean(
                         errorCode = 404,
-                        errorMessage = "Movie data not found"
+                        errorMessage = "data not found"
                     )
                 )
             }

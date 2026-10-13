@@ -96,4 +96,17 @@
     <string name="login_subtitle">Let\'s get you signed in. Enter your emaill below</string>
     <string name="welocme_back">Welocme Back!</string>
     <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="onboarding_first_subtitle">Explore thousands of films, trending trailers, and detailed cast insights all in one place.</string>
+    <string name="onboarding_first_title">Discover Movies</string>
+    <string name="onboarding_second_title">Tailored Just For You</string>
+    <string name="onboarding_second_subtitle">Get personalized recommendations and smart suggestions based on your unique taste in genres.</string>
+    <string name="onboarding_third_title">Never Miss a Release</string>
+    <string name="onboarding_third_subtitle">Create custom watchlists and turn on notifications to know exactly when movies hit theaters or streaming.</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="google_sign_in">Google Sign In</string>
+    <string name="signed_out">Signed out</string>
+    <string name="client_id">773476565125-vh3hb81o205kmifjcf035jn83dh599po.apps.googleusercontent.com</string>
+    <string name="welcome_to_xoco_1">Welcome to XOCO.1</string>
+    <string name="phone_login_subtitle">Enter your phone number to sign in and get a verification code.</string>
+    <string name="resend">Resend</string>
 </resources>

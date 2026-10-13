@@ -9,7 +9,6 @@ import com.app.xoco2.data.models.RegisterRequest
 
 class RegisterAdapter(
     private val onLoginClick: () -> Unit,
-    val onGoogleRegisterClick: () -> Unit,
     val onVerifyClick: () -> Unit,
     val onRegisterClick: (RegisterRequest) -> Unit
 ) : RecyclerView.Adapter<RegisterAdapter.RegisterHolder>() {
@@ -24,7 +23,6 @@ class RegisterAdapter(
         return RegisterHolder(
             binding,
             onLoginClick,
-            onGoogleRegisterClick,
             onRegisterClick,
             onVerifyClick
         )
@@ -47,7 +45,6 @@ class RegisterAdapter(
     class RegisterHolder(
         val binding: ItemRegisterBinding,
         private val onLoginClick: () -> Unit,
-        val onGoogleRegisterClick: () -> Unit,
         val onRegisterClick: (RegisterRequest) -> Unit,
         val onVerifyClick: () -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -74,9 +71,6 @@ class RegisterAdapter(
             }
             binding.loginButton.setOnClickListener {
                 onLoginClick()
-            }
-            binding.googleSignIn.setOnClickListener {
-                onGoogleRegisterClick()
             }
             binding.otpButton.setOnClickListener {
                 onVerifyClick()

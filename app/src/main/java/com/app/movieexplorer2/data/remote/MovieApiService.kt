@@ -53,6 +53,10 @@ interface MovieApiService {
         @Body request: RatingRequest
     ): Response<RatingResponse>
 
+    @GET("find/{external_id}")
+    suspend fun searchMoviesById(
+
+    )
 
 
 }

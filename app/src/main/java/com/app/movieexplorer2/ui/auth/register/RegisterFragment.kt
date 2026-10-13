@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,6 +17,7 @@ import com.app.movieexplorer2.R
 import com.app.movieexplorer2.databinding.FragmentRegisterBinding
 import com.app.movieexplorer2.ui.home.HomeFragmentDirections
 import com.app.movieexplorer2.ui.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -66,9 +68,6 @@ class RegisterFragment : Fragment() {
                 )
 
             },
-            onGoogleRegisterClick = {
-
-            },
             onLoginClick = {
                 findNavController().navigate(
                     R.id.action_registerFragment_to_loginFragment
@@ -112,7 +111,7 @@ class RegisterFragment : Fragment() {
                             setOf(
                                 Toast.makeText(
                                     requireContext(),
-                                    "User Registered successfully",
+                                    "Registered. A verification code was sent to your email.",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             )

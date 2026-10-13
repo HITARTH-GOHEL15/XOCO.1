@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/onboardingFragment">
 
     <!-- Open the detail screen from anywhere -->
     <action
@@ -86,6 +86,42 @@
             app:destination="@id/homeFragment"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.app.movieexplorer2.ui.onboarding.OnboardingFragment"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_onboarding">
 
+        <action
+            android:id="@+id/action_onboardingFragment_to_authTypesFragment"
+            app:destination="@id/authTypesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/phoneAuthFragment"
+        android:name="com.app.movieexplorer2.ui.auth.phone_firebase.PhoneAuthFragment"
+        android:label="PhoneAuth"
+        tools:layout="@layout/fragment_login_phone">
+
+        <action
+            android:id="@+id/action_phoneAuthFragment_to_homeFragment"
+            app:destination="@+id/homeFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/authTypesFragment"
+        android:name="com.app.movieexplorer2.ui.auth.AuthTypesFragment"
+        android:label="AuthTypes"
+        tools:layout="@layout/fragment_auth_types">
+
+        <action
+            android:id="@+id/action_authTypesFragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+
+        <action
+            android:id="@+id/action_authTypesFragment_to_phoneAuthFragment"
+            app:destination="@+id/phoneAuthFragment"/>
+    </fragment>
 
 </navigation>

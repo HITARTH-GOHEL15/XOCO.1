@@ -89,5 +89,9 @@
        <item name="errorIconDrawable">@drawable/ic_parsing_error</item>
     </style>
 
+    <style name="ThemeOverlay.FirebaseIcon" parent="Widget.Material3.Button.Icon">
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
     <!-- Add this line inside Widget.MovieExplorer.Button so buttons use Poppins -->
 </resources>

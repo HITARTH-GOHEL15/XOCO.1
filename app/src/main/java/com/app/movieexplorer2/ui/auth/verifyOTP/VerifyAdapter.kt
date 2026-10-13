@@ -68,7 +68,7 @@ class VerifyAdapter(
 
         fun bind(item: OtpVerifyRequest) {
             binding.emailTextField.editText?.setText(item.email)
-            binding.otpTextField.editText?.setText(item.otp)
+            binding.otpTextField.editText?.setText(item.code)
         }
     }
 }
